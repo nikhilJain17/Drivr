@@ -6,7 +6,7 @@ var socket = io.connect('http://d7ee1c58.ngrok.io', {reconnect: true});
 socket.connect(); 
 
 // Add a connect listener
-socket.on('connect',function() {
+socket.on('connect', function() {
   console.log('Client has connected to the server!');
 });
 

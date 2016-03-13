@@ -10,7 +10,7 @@ var io = require('socket.io')(http);
 io.on('connection', function(socket){
     console.log("connection");
 
-socket.on("/", function(req, res){
+app.get("/", function(req, res){
     res.send("Drivr");
   });
 
@@ -23,19 +23,23 @@ socket.on("/", function(req, res){
 
 // according to the muse, is the user focusing?
 // note, it is an 'on/off' thing, not a gradient
-app.get('/isConcentrating', function(req, res) {
+socket.on('isConcentrating', function(req, res) {
 //    isConcentrating = true;
     io.emit("concentrating");
     console.log('concentrating');
 });
     
-app.get('/isNotConcentrating', function(req, res) {
+socket.on('isNotConcentrating', function(req, res) {
 //    isConcentrating = false;
     io.emit("notConcentrating");
+//    console.log('not concentrating');
 });
     
-// @TODO accelerometer data from head!
-    
+// accelerometer data from head!
+socket.on('headtilt', function(req, res) {
+   console.log('tilt ' + Math.random()); // to see if there are unique tilts
+    io.emit('headIsTilting');
+});
     
     
 
@@ -67,13 +71,13 @@ socket.on('notOnWheel', function(req, res){
 /////////////////////////////////////
 
     
-  app.get("/right", function(req, res){
+  socket.on("right", function(req, res){
     res.send("Right Turn");
     console.log("right turn");
     io.emit("right");
   });
 
-  app.get("/left", function(req, res){
+  socket.on("left", function(req, res){
     res.send("Left Turn");
     console.log("left turn");
     io.emit("left");

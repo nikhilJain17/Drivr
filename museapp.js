@@ -4,7 +4,9 @@ var osc = require('osc-min');
 
 var server = dgram.createSocket("udp4");
 // var socket = io('http://104.131.10.60:8080');
-var socket = require('socket.io-client')('http://460c92a0.ngrok.io');
+
+var io = require('socket.io-client');
+var socket = io.connect('http://bd468a57.ngrok.io', {reconnect: true});
 
 //var jewdant = require('socket.io')(server);
 
@@ -32,10 +34,17 @@ server.on("message", function(msg, rinfo) {
     // Code for concentration
     if (oscObj.address == "/muse/elements/experimental/concentration") {
         console.log("concentration level:: ");
-        console.log(oscObj.args);
+//        console.log(oscObj.args);
         
-        socket.emit(oscObj.args);
-            
+        if (oscObj.args > 0.5) {
+            socket.emit('isConcentrating');
+            console.log('isConcentrating');
+        }
+        
+        else {
+            socket.emit('isNotConcentrating'); 
+            console.log('is not concentrating');
+        }
         
     }
 //    
@@ -44,7 +53,19 @@ server.on("message", function(msg, rinfo) {
 //        console.log(oscObj.args);   
 //    }
       
-      
+       if (oscObj.address == "/muse/acc") {
+            console.log(oscObj.args[0].value);
+           
+           if (oscObj.args[0].value > 200 || oscObj.args[0].value < -130) {
+               
+                socket.emit('headtilt');   
+           }
+               
+           
+//            if (oscObj.args[0] > 100)
+//                console.log('dm');
+        }
+//    
       
 
     //START ALPHA PROCESSING CODE
