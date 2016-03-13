@@ -1,11 +1,12 @@
-var io = require('socket.io-client');
+//var io = require('socket.io-client');
 var dgram = require("dgram");
 var osc = require('osc-min');
 
 var server = dgram.createSocket("udp4");
 // var socket = io('http://104.131.10.60:8080');
-var socket = io('http://localhost:8080');
+var socket = require('socket.io-client')('http://460c92a0.ngrok.io');
 
+//var jewdant = require('socket.io')(server);
 
 var oscObj;
 
@@ -15,6 +16,9 @@ var batch = [];
 var lock = 0;
 var hold = 0;
 var calm = 0;
+
+//socket.emit('left');
+
 server.on("message", function(msg, rinfo) {
   var error;
   try {
@@ -27,8 +31,12 @@ server.on("message", function(msg, rinfo) {
 
     // Code for concentration
     if (oscObj.address == "/muse/elements/experimental/concentration") {
-        console.log("concentration: ");
-        console.log(oscObj.args);   
+        console.log("concentration level:: ");
+        console.log(oscObj.args);
+        
+        socket.emit(oscObj.args);
+            
+        
     }
 //    
 //    if (oscObj.address = "/muse/elements/experimental/mellow") {

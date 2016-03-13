@@ -1,0 +1,32 @@
+
+
+// according to the muse, is the user focusing?
+// note, it is an 'on/off' thing, not a gradient
+app.get('/isConcentrating', function(req, res) {
+//    isConcentrating = true;
+    io.emit("concentrating");
+    console.log('concentrating');
+});
+    
+app.get('/isNotConcentrating', function(req, res) {
+//    isConcentrating = false;
+    io.emit("notConcentrating");
+});
+    
+// @TODO accelerometer data from head!
+    
+    
+    
+
+/////////////////////////////////////
+//                                 //
+//         input from myo          //
+//                                 //
+/////////////////////////////////////
+    
+// hand NOT on wheel
+app.get('/notOnWheel', function(req, res){
+    console.log('not on wheel');
+    socket.emit('handsoff');
+
+});
