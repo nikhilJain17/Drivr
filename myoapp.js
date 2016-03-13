@@ -5,6 +5,9 @@ var socket = io.connect('http://78b4b3dd.ngrok.io', {reconnect: true});
 
 socket.connect(); 
 
+// DISABLE LOCKING
+
+
 // Add a connect listener
 socket.on('connect', function() {
   console.log('Client has connected to the server!');
@@ -19,6 +22,10 @@ Myo.connect('com.bd.driver');
 Myo.on('connected', function() {
     console.log('Connected!\n');
     console.log(this);
+    
+    Myo.setLockingPolicy("none");
+
+    
 });
 
 
