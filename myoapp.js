@@ -1,7 +1,7 @@
 var Myo = require('myo');
 //myo = Myo.create();
 var io = require('socket.io-client');
-var socket = io.connect('http://78b4b3dd.ngrok.io', {reconnect: true});
+var socket = io.connect('http://ed614b0f.ngrok.io', {reconnect: true});
 
 socket.connect(); 
 

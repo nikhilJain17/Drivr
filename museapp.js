@@ -6,7 +6,7 @@ var server = dgram.createSocket("udp4");
 // var socket = io('http://104.131.10.60:8080');
 
 var io = require('socket.io-client');
-var socket = io.connect('http://78b4b3dd.ngrok.io', {reconnect: true});
+var socket = io.connect('http://ed614b0f.ngrok.io', {reconnect: true});
 
 //var jewdant = require('socket.io')(server);
 
