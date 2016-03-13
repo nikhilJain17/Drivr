@@ -1,7 +1,7 @@
 var Myo = require('myo');
 //myo = Myo.create();
 var io = require('socket.io-client');
-var socket = io.connect('http://d7ee1c58.ngrok.io', {reconnect: true});
+var socket = io.connect('http://78b4b3dd.ngrok.io', {reconnect: true});
 
 socket.connect(); 
 
@@ -33,6 +33,12 @@ Myo.on('pose', function(pose_name){
     if (pose_name == 'fist') {
         console.log('fist on');
         socket.emit('onWheel');
+    }
+    
+    // playskip
+    if (pose_name == 'wave_in') {
+        console.log('skip song');
+        socket.emit('music');
     }
     
 });

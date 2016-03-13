@@ -6,7 +6,7 @@ var server = dgram.createSocket("udp4");
 // var socket = io('http://104.131.10.60:8080');
 
 var io = require('socket.io-client');
-var socket = io.connect('http://bd468a57.ngrok.io', {reconnect: true});
+var socket = io.connect('http://78b4b3dd.ngrok.io', {reconnect: true});
 
 //var jewdant = require('socket.io')(server);
 
@@ -21,6 +21,8 @@ var calm = 0;
 
 //socket.emit('left');
 
+console.log('started app, working in background');
+
 server.on("message", function(msg, rinfo) {
   var error;
   try {
@@ -33,7 +35,7 @@ server.on("message", function(msg, rinfo) {
 
     // Code for concentration
     if (oscObj.address == "/muse/elements/experimental/concentration") {
-        console.log("concentration level:: ");
+//        console.log("concentration level:: ");
 //        console.log(oscObj.args);
         
         if (oscObj.args > 0.5) {
@@ -54,7 +56,7 @@ server.on("message", function(msg, rinfo) {
 //    }
       
        if (oscObj.address == "/muse/acc") {
-            console.log(oscObj.args[0].value);
+//            console.log(oscObj.args[0].value);
            
            if (oscObj.args[0].value > 200 || oscObj.args[0].value < -130) {
                
