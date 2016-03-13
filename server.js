@@ -55,6 +55,11 @@ socket.on('notOnWheel', function(req, res){
     socket.emit('handsoff');
 
 });
+    
+socket.on('onWheel', function(req, res) {
+    console.log('on wheel');
+    socket.emit('handsOn')
+});
 
 /////////////////////////////////////
 //                                 //

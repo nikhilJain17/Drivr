@@ -30,6 +30,11 @@ Myo.on('pose', function(pose_name){
         socket.emit('notOnWheel');
     }
     
+    if (pose_name == 'fist') {
+        console.log('fist on');
+        socket.emit('onWheel');
+    }
+    
 });
 
 Myo.on('pose_off', function(pose_name){
